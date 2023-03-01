@@ -15,7 +15,7 @@ sudo swapoff -a
 
 2. Add Kubernetes Repository and install kubernetes (from kubernetes essential notes)
 
-**Kubernetes Control Plane**
+**All Kubernetes Nodes**
 ```
 # Add Kubernetes Repository GPG key
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -38,11 +38,19 @@ sudo apt-mark hold kubelet kubeadm kubectl
 kubeadm version
 ```
 
+3. Start and enable kubelet
+
+```
+sudo systemctl start kubelet 
+sudo systemctl enable kubelet
+```
+
 ## Installing Docker
 
 
 1. Login to each individual nodes, and type in the following command line codes (above doesnt work)
 
+**All Kubernetes Nodes**
 ```
 # UPDATE apt PACKAGE INDEX AND INSTALL PACKAGES TO ALLOW apt TO USE REPO OVER HTTPS
 sudo apt-get update
@@ -65,3 +73,4 @@ sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu
 sudo apt-mark hold docker-ce
 ```
 
+## Setting up K8s Cluster
