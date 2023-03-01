@@ -16,3 +16,4 @@ swapoff -a
 
 2. edit file to permanently disable swap
 
+#
