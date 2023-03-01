@@ -10,9 +10,7 @@
 
 **Kubernetes Control Plane**
 ```
-sudo -i
-
-swapoff -a
+sudo swapoff -a
 ```
 
 2. edit file to permanently disable swap
@@ -23,8 +21,4 @@ sudo vim /etc/fstab
 ```
 
 /etc/fstab
-```
-
-```
-
-
+<img src="https://user-images.githubusercontent.com/6856382/222060817-256b186b-d097-4c52-a21e-87932379637e.png"/>
