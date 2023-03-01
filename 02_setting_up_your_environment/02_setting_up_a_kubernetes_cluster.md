@@ -8,6 +8,7 @@
 
 1. Disable Swap
 
+**Kubernetes Control Plane**
 ```
 sudo -i
 
@@ -16,4 +17,8 @@ swapoff -a
 
 2. edit file to permanently disable swap
 
-#
+**Kubernetes Control Plane**
+```
+sudo vim /etc/fstab
+```
+
