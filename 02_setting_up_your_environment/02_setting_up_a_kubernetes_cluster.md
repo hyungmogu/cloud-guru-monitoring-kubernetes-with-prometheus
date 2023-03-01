@@ -22,5 +22,9 @@ swapoff -a
 sudo vim /etc/fstab
 ```
 
-#
+/etc/fstab
+```
 
+```
+
+#
