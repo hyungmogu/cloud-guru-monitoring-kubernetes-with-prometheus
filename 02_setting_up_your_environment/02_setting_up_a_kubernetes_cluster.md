@@ -27,4 +27,4 @@ sudo vim /etc/fstab
 
 ```
 
-#
+
