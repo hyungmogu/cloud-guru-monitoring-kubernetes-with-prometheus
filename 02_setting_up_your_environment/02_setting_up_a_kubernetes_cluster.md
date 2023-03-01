@@ -28,4 +28,3 @@ sudo vim /etc/fstab
 ```
 
 
-#
