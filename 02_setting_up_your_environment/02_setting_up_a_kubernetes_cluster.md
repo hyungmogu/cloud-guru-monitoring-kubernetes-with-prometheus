@@ -13,7 +13,7 @@
 sudo swapoff -a
 ```
 
-2. Add Kubernetes Repository (from kubernetes essential notes)
+2. Add Kubernetes Repository and install kubernetes (from kubernetes essential notes)
 
 **Kubernetes Control Plane**
 ```
@@ -38,3 +38,4 @@ sudo apt-mark hold kubelet kubeadm kubectl
 kubeadm version
 ```
 
+#
