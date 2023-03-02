@@ -75,4 +75,3 @@ sudo apt-mark hold docker-ce
 
 ## Setting up K8s Cluster
 
-#
