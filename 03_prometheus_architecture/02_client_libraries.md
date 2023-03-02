@@ -19,6 +19,7 @@
     3. Python
     4. The rest (supported by third party)
 
-- `client libraries` allows developers to write their own `client library`
+- `client libraries` allows developers to write their own
 
 
+#
