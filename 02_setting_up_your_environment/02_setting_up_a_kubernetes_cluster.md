@@ -162,3 +162,4 @@ kube-proxy-vhkjz                                       1/1     Running          
 kube-scheduler-92c60ee3641c.mylabserver.com            1/1     Running             0          10m
 ```
 
+#
