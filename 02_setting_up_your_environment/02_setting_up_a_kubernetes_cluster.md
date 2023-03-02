@@ -37,14 +37,6 @@ sudo apt-mark hold kubelet kubeadm kubectl
 # Check version
 kubeadm version
 ```
-
-3. Start and enable kubelet
-
-```
-sudo systemctl start kubelet 
-sudo systemctl enable kubelet
-```
-
 ## Installing Docker
 
 
@@ -75,3 +67,23 @@ sudo apt-mark hold docker-ce
 
 ## Setting up K8s Cluster
 
+1. Start and enable kubelet
+
+**Kubernetes Control Plane**
+```
+sudo systemctl start kubelet 
+sudo systemctl enable kubelet
+```
+
+2. Create k8 config file
+
+***To All Nodes** 
+```
+# set value `net.bridge.bridge-nf-call-iptables=1`, and make it apply even after computer restarts
+echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+
+# Make configuration to apply immediately
+sudo sysctl -p
+```
+
+#
