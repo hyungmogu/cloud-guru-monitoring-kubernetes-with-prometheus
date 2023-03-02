@@ -108,9 +108,11 @@ NAME                           STATUS     ROLES    AGE     VERSION
 92c60ee3642c.mylabserver.com   NotReady   <none>   57s     v1.15.7
 ```
 
-2. Create k8 config file
+## Configuring Networking with Flannel
 
-***To All Nodes** 
+1. turn on `net.bridge-bridge-nf-call-iptables`
+
+**To All Nodes**
 ```
 # set value `net.bridge.bridge-nf-call-iptables=1`, and make it apply even after computer restarts
 echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
@@ -119,4 +121,44 @@ echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```
 
-#
+2. Install flannel
+
+**Kubernentes Control Plane**
+```
+kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel-old.yaml
+```
+
+3. Verify that all nodes now have status `Ready`
+
+**Kubernetes Control Plane**
+```
+kubectl get nodes -w
+```
+
+```
+NAME                           STATUS   ROLES    AGE     VERSION
+92c60ee3641c.mylabserver.com   Ready    master   10m     v1.15.7
+92c60ee3642c.mylabserver.com   Ready    <none>   8m18s   v1.15.7
+```
+
+4. Verify that flannel pods are up and running
+
+**Kubernetes Control Plane**
+```
+kubectl get pods -n kube-system
+```
+
+```
+NAME                                                   READY   STATUS              RESTARTS   AGE
+coredns-5d4dd4b4db-qr55l                               0/1     ContainerCreating   0          11m
+coredns-5d4dd4b4db-xzklt                               0/1     ContainerCreating   0          11m
+etcd-92c60ee3641c.mylabserver.com                      1/1     Running             0          11m
+kube-apiserver-92c60ee3641c.mylabserver.com            1/1     Running             0          11m
+kube-controller-manager-92c60ee3641c.mylabserver.com   1/1     Running             0          11m
+kube-flannel-ds-amd64-jmttb                            1/1     Running             0          98s
+kube-flannel-ds-amd64-mjl6q                            1/1     Running             0          98s
+kube-proxy-q5v4s                                       1/1     Running             0          9m41s
+kube-proxy-vhkjz                                       1/1     Running             0          11m
+kube-scheduler-92c60ee3641c.mylabserver.com            1/1     Running             0          10m
+```
+
