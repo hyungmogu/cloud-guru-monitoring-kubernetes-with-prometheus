@@ -75,6 +75,39 @@ sudo systemctl start kubelet
 sudo systemctl enable kubelet
 ```
 
+2. Bootstrap the cluster
+
+**kubernetes Control Plane**
+```
+# Initialize the cluster on the Kube Master server
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+# Setup kubeconfig for the local user on the kube master server
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config  
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+3. copy paste the following code provided after `sudo kubeadm init`
+
+**Kubernetes Worker Nodes**
+```
+[[sudo kubeadm join $controller_ip:6443 --token $token --discovery-token-ca-cert-hash $hash]]
+```
+
+4. verify that the kubernetes cluster is working correctly
+
+**Kubernetes Control Plane**
+```
+kubectl get nodes
+```
+
+```
+NAME                           STATUS     ROLES    AGE     VERSION
+92c60ee3641c.mylabserver.com   NotReady   master   3m22s   v1.15.7
+92c60ee3642c.mylabserver.com   NotReady   <none>   57s     v1.15.7
+```
+
 2. Create k8 config file
 
 ***To All Nodes** 
@@ -86,4 +119,3 @@ echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```
 
-#
