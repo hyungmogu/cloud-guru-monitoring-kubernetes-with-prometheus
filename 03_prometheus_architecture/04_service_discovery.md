@@ -12,3 +12,5 @@
 
 - `service discovery` allows prometheus to setup client libraries and exporter automatically when kubernetes have new pods as well as services
 - `service discovery` accesses kubernetes api
+
+#
