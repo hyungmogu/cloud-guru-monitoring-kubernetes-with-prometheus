@@ -8,3 +8,5 @@
 - `Pull-based system` decides when and what needs to be scraped
 - `Pull-based system` is what prometheus is based on
 - `Pull-based system` is performed in prometheus using http endpoints
+
+#
