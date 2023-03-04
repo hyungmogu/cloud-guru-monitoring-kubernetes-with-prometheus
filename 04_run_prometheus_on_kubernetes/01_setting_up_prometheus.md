@@ -33,4 +33,3 @@ cd content-kubernetes-prometheus-env/
 
 4. Create the kubernetes namespace where prometheus will be living in
 
-#
