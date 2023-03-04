@@ -1,6 +1,6 @@
 # Setting Up Prometheus
 
-<img src="https://user-images.githubusercontent.com/6856382/222880850-496c0fdc-3d1f-4ca9-9801-c13075bdef1b.png">
+<img src="https://user-images.githubusercontent.com/6856382/222925331-53461a37-6508-4cbe-a190-5dd3b226bca4.png">
 
 ## Instructions - Setting up Prometheus Cluster
 
@@ -515,7 +515,9 @@ subjects:
 ## Instructions - Setting up Prometheus Kube State Metrics
 
 1. Setup kube state metrics
-- `---` allows to combine two kinds (e.g. Service and Deployment) into one
+- `kube-state-metrics` is a pod that provides an easy way of gathering methrics on the Kubernetes API
+- `kube-state-mterics` information can be found [here](https://github.com/kubernetes/kube-state-metrics)
+- `---` allows to combine two or more kinds (e.g. Service and Deployment) in one file
 
 **Kubernetes Control Plane**
 ```
@@ -569,3 +571,4 @@ spec:
 
 1. when pod constantly complains `SandboxChanged`, and deployment stuck at `ContainerCreating` status, its often due to lack of memory or cpu resources
 
+#
