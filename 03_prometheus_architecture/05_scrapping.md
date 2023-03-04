@@ -9,4 +9,3 @@
 - `Pull-based system` is what prometheus is based on
 - `Pull-based system` is performed in prometheus using http endpoints
 
-#
