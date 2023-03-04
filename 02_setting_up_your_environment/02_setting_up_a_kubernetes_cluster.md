@@ -40,7 +40,7 @@ kubeadm version
 ## Installing Docker
 
 
-1. Login to each individual nodes, and type in the following command line codes (above doesnt work)
+1. Login to each individual nodes, and type in the following command line codes 
 
 **All Kubernetes Nodes**
 ```
