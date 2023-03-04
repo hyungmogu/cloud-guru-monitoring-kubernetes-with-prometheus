@@ -45,3 +45,4 @@ kubectl apply -f namespaces.yml
 
 ```
 
+#
