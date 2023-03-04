@@ -406,3 +406,62 @@ spec:
           emptyDir: {}
 ```
 
+2. Setup Kubernetes services
+- `service` is being setup to make prometheus UI publically accessible
+- under `annotation`
+    - `annotation` is important for service discovery
+    - `annotation` has `prometheus.io/port` which is the port that prometheus
+     is going to go and scrape
+    - `annotation` has `prometheus.io/port` which is the internal ip that is going to be accessed by kubernetes 
+- under `selector`
+    - `selector:app:` is the pod name where this service will be applied
+    - `selector:app:` points which pod to talk to
+- under `ports`
+    - `port: 8080` is the public port
+    - `targetPort:9090` is the internal port
+    - `nodePort:8080` is the public port
+
+**Kubernetes Control Plane**
+```
+kubectl appy -f prometheus-service.yml
+```
+**/cloud-guru-monitoring-kubernetes-with-prometheus/prometheus/prometheus-service.yml**
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-service
+  namespace: monitoring
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '9090'
+
+spec:
+  selector:
+    app: prometheus-server
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 9090
+      nodePort: 8080
+```
+
+
+3. Verify that service is working
+- the reason why state is Down is because node exporter is not set up
+
+**kubernetes control plane**
+```
+kubectl describe services -n monitoring
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/222922377-5fb66378-10e5-4824-a856-232005fff649.png">
+
+<img src="https://user-images.githubusercontent.com/6856382/222922316-ebc0535e-3f5f-4971-a743-075b346ed7bc.png">
+
+## Note
+
+1. when pod constantly complains `SandboxChanged`, and deployment stuck at `ContainerCreating` status, its often due to lack of memory or cpu resources
+
+
+#
