@@ -10,5 +10,9 @@
 - `Pull-based system` is performed in prometheus using http endpoints
 
 ## Push-based System
-- `Push-based system`
+- `Push-based system` uses monitoring system
+- `Push-based system` uses monitoring target to determine when it triggers and sends data to server
 
+## Prometheus and Pull-based System
+- `Prometheus` makes a request that is being made to http endpoint
+- `Prometheus` parses and ingests received data to storage
