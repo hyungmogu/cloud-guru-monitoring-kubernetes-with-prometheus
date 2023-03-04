@@ -50,3 +50,4 @@ kubectl apply -f namespaces.yml
 
 **/cloud-guru-monitoring-kubernetes-with-prometheus/prometheus/prometheus-config-map.yml**
 
+#
