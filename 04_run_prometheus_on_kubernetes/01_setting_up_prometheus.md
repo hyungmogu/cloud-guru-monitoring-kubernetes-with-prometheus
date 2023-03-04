@@ -33,3 +33,16 @@ cd content-kubernetes-prometheus-env/
 
 4. Create the kubernetes namespace where prometheus will be living in
 
+**Kubernetes Control Plane**
+```
+kubectl apply -f namespaces.yml
+```
+
+3. setup prometheus confirguation map
+
+**Kubernetes control plane**
+```
+
+```
+
+#
