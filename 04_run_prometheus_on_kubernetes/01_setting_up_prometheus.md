@@ -23,4 +23,3 @@ yum install -y git
 git clone git@github.com:linuxacademy/content-kubernetes-prometheus-env.git
 ```
 
-#
