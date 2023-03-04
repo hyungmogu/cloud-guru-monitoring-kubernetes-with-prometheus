@@ -67,15 +67,7 @@ sudo apt-mark hold docker-ce
 
 ## Setting up K8s Cluster
 
-1. Start and enable kubelet
-
-**Kubernetes Control Plane**
-```
-sudo systemctl start kubelet 
-sudo systemctl enable kubelet
-```
-
-2. Bootstrap the cluster
+1. Bootstrap the cluster
 
 **kubernetes Control Plane**
 ```
@@ -88,14 +80,14 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-3. copy paste the following code provided after `sudo kubeadm init`
+2. copy paste the following code provided after `sudo kubeadm init`
 
 **Kubernetes Worker Nodes**
 ```
 [[sudo kubeadm join $controller_ip:6443 --token $token --discovery-token-ca-cert-hash $hash]]
 ```
 
-4. verify that the kubernetes cluster is working correctly
+3. verify that the kubernetes cluster is working correctly
 
 **Kubernetes Control Plane**
 ```
@@ -161,5 +153,3 @@ kube-proxy-q5v4s                                       1/1     Running          
 kube-proxy-vhkjz                                       1/1     Running             0          11m
 kube-scheduler-92c60ee3641c.mylabserver.com            1/1     Running             0          10m
 ```
-
-#
