@@ -343,7 +343,18 @@ scrape_configs:
 Events:  <none>
 ```
 
-## Instructions - Setting up Prometheus Pod
+## Instructions - Setting up Prometheus Pods
+
+1. Create prometheus pods via deployment
+- under `args`
+    - `--config.file=/etc/prometheus/prometheus.yml` is the location of prometheus config file 
+    - `--storage.tsdb.path=/prometheus/` is the location where prometheus data is going to be stored
+- under `volumeMounts`
+    - `volume` is a directory with data that is accessible across multiple containers in a pod
+    - `volumeMounts` means the mounting of declared volume into a container in the same Pod
+- under `containers`
+    - `image:weaveworks/watch` is a container that checks for any changes in configuration files
+    - `image:weaveworks/watch` reloads containers without destroying pod
 
 **Kubernetes Control Plane**
 ```
@@ -392,7 +403,6 @@ spec:
             name: prometheus-server-conf
 
         - name: prometheus-storage-volume
-          emptyDir: {
+          emptyDir: {}
 ```
 
-#
