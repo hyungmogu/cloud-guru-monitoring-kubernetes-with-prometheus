@@ -459,9 +459,114 @@ kubectl describe services -n monitoring
 
 <img src="https://user-images.githubusercontent.com/6856382/222922316-ebc0535e-3f5f-4971-a743-075b346ed7bc.png">
 
+## Instructions - Setting up Prometheus Roles
+
+1. Setup ClusterRoles for prometheus
+- `ClusterRole` contains rules that represent a set of permissions
+- `ClusterRole` has serveral uses:
+    1. define permissions on cluster-scoped resources
+    2. define permissions on namespaced resorces and be granted access across all namespaces
+    3. define permissions on namespaced resources and be granted access within individual namespaces
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f clusterRole.yml
+```
+
+**/cloud-guru-monitoring-kubernetes-with-prometheus/prometheus/prometheus-service.yml**
+```
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: prometheus
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - extensions
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: monitoring
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/222923718-8f588213-700f-48fd-b64a-55ef897d8c87.png">
+
+## Instructions - Setting up Prometheus Kube State Metrics
+
+1. Setup kube state metrics
+- `---` allows to combine two kinds (e.g. Service and Deployment) into one
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f kube-state-metrics.yml
+```
+
+**/cloud-guru-monitoring-kubernetes-with-prometheus/prometheus/kube-state-metrics.yml**
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: kube-state-metrics
+  namespace: monitoring
+  labels:
+    app: kube-state-metrics
+  annotations:
+    prometheus.io/scrape: 'true'
+spec:
+  ports:
+  - name: metrics
+    port: 8080
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    app: kube-state-metrics
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kube-state-metrics
+  namespace: monitoring
+  labels:
+    app: kube-state-metrics
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: kube-state-metrics-main
+      labels:
+        app: kube-state-metrics
+    spec:
+      containers:
+        - name: kube-state-metrics
+          image: quay.io/coreos/kube-state-metrics:latest
+          ports:
+          - containerPort: 8080
+            name: metrics
+```
+
 ## Note
 
 1. when pod constantly complains `SandboxChanged`, and deployment stuck at `ContainerCreating` status, its often due to lack of memory or cpu resources
-
 
 #
