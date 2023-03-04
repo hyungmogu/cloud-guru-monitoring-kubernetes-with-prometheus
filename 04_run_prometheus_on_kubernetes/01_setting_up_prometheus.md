@@ -569,4 +569,3 @@ spec:
 
 1. when pod constantly complains `SandboxChanged`, and deployment stuck at `ContainerCreating` status, its often due to lack of memory or cpu resources
 
-#
