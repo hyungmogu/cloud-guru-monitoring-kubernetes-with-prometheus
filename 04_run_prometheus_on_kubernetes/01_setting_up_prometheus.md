@@ -4,7 +4,23 @@
 
 ## Instructions
 
-1. 
+1. install `git` on `kubernetes master`
 
+**Kubernetes Master**
+```
+sudo apt-get install git
+```
+
+or in (centOS)
+
+```
+yum install -y git
+```
+
+2. download already-proviuded kubernetes prometheus env from git repo
+
+```
+git clone git@github.com:linuxacademy/content-kubernetes-prometheus-env.git
+```
 
 #
