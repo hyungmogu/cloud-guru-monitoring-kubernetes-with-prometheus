@@ -74,4 +74,3 @@ kubectl get services -n monitoring
     - type `kubectl describe pod <pod_name> -n <target_namespace>`
     - type `kubectl rollout restart deployment/<deployment_name> -n <target_namespace>`
 
-#
