@@ -71,4 +71,3 @@ spec:
             - containerPort: 3000
 ```
 
-#
