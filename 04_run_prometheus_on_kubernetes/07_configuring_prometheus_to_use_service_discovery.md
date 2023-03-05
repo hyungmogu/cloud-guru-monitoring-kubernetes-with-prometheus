@@ -66,7 +66,87 @@ data:
     
     scrape_configs:
         - job_name: 'kubernetes-apiservers'
+          
+          kubernetes_sd_configs:
+          - role: endpoints
+          scheme: https  
+
+          tls_config:
+            ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+          relabel_configs:
+          - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+            action: keep
+            regex: default;kubernetes;https
+            
         - job_name: `kubernetes-cadvisor`
+
+          scheme: https
+
+          tls_config:
+            ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+          bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+          kubernetes_sd_configs:
+          - role: node
+
+          relabel_configs:
+          - action: labelmap
+            regex: __meta_kubernetes_node_label_(.+)
+          - target_label: __address__
+            replacement: kubernetes.default.svc:443
+          - source_labels: [__meta_kubernetes_node_name]
+            regex: (.+)
+            target_label: __metrics_path__
+            replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
 ```
 
-#
+- In the code above
+    - `tls_config` means transport layer security configuration
+    - `tls_config` is for connection to prometheus instance
+    - `relabel_configs` is a tool to dynamically rewrite the label set of a target before it gets scraped
+    - `relabel_configs` has 
+        1. `source_labels` 
+            - `source_labels` selects values from existing labels
+        2. `action:labelmap`
+            - `action:labelmap` matches regex against all source label names, not just thoese specified in `source_labels`.
+            - `action:labelmap` copies the values of the matching labels to label names given by `replacement` with match group references `(${1}, ${2}, ...)` in `replacement` substituted by their value
+
+5. Apply the changes to the prometheus configuration map
+
+**kubernetes control plane**
+```
+kubectl apply -f prometheus-config-map.yml
+```
+
+6. Reload the prometheus pod by deleting it
+- a. show all the pods under `monitoring` name space
+
+**kubernetes control plane**
+```
+kubectl get pods -n monitoring
+```
+
+```
+NAME                                     READY     STATUS    RESTARTS   AGE      
+kube-state-metrics-8548c449db-hzsm2      1/1       Running   0          35m      
+prometheus-deployment-84697b66db-qgksz   1/1       Running   0          35m 
+```
+
+- b. delete all the pods in here to make changes to take effect
+
+**kubernetes control plane**
+```
+kubectl delete pods <pod_name> -n monitoring
+```
+
+7. open up a new brwoser and nagivate to the expression browser
+
+```
+http://<PUBLIC_IP>:8080
+```
+
+8. CLick status and select target from the dropdown. make sure two targets exists
+
+<img src="https://user-images.githubusercontent.com/6856382/222984542-96f7dc0c-f404-4e59-b29b-c1a41f16c928.png">
