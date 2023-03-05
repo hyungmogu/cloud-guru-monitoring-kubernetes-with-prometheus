@@ -14,9 +14,10 @@
 
 1. Download app from github `linuxacademy/content-kubernetes-prometheus-app`
 
-**Kubernetes Control Plane**
+**Kubernetes Control Plane (or local)**
 ```
 git clone git@github.com:linuxacademy/content-kubernetes-prometheus-app.git
+cd content-kubernetes-prometheus-app
 ```
 
 2. Ensure the following annotation is included in `deployment.yml`
@@ -71,4 +72,21 @@ spec:
             - containerPort: 3000
 ```
 
-#
+3. Create a Docker image containing the application
+
+**Syntax**
+```
+docker built -t <docker_hub_username>/<app_name> .
+```
+
+**Kubernetes Control Plane (or Local), Example**
+```
+docker built -t rivethead42/comicbox . 
+```
+
+4. Login to docker hub
+
+**Kubernetes Control Plane (or Local)**
+```
+docker login
+```
