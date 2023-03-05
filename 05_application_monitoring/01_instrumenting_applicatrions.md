@@ -5,3 +5,7 @@
 - this part is about how to
     1. gather metrics from applications
     2. have the data get scrapped into Prometheus
+
+## Instrumentation
+
+#
