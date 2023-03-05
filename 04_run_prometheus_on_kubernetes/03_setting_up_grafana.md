@@ -54,4 +54,24 @@ kubectl get services -n monitoring
 
 <img src="https://user-images.githubusercontent.com/6856382/222934939-964d7963-c50f-493e-8a55-45f754f04945.png">
 
+3. Login into Grafana UI
+
+**Browser**
+```
+<public_url_kubernetes_master>:8000
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/222937175-498eda3e-7b85-4ece-9662-fd0a899d3839.png">
+
+4. Add Prometheus to Grafana 
+- a. click `Data Souces` under `Main Menu`
+
+<img src="https://user-images.githubusercontent.com/6856382/222937285-5b8e0340-1993-4687-a1a5-de35325648c3.png">
+
+## Notes
+1. Debugging strategy
+    - type `sudo journalctl -u kubelet -f`
+    - type `kubectl describe pod <pod_name> -n <target_namespace>`
+    - type `kubectl rollout restart deployment/<deployment_name> -n <target_namespace>`
+
 #
