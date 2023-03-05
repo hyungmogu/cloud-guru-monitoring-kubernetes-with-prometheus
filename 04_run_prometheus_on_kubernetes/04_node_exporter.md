@@ -13,3 +13,9 @@
 
 ## Instruction - Setting Up Node Exporter
 
+1. Add user `prometheus`
+
+**Kubernetes Control Plane**
+```
+adduser prometheus
+```
