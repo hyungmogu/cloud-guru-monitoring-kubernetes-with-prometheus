@@ -934,4 +934,3 @@ git@github.com:linuxacademy/content-kubernetes-prometheus-env.git
 
 <img src="https://user-images.githubusercontent.com/6856382/222976659-613685bb-45c9-4197-9799-fa59f0c07273.png">
 
-#
