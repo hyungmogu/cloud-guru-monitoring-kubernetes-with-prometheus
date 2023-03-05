@@ -68,6 +68,14 @@ kubectl get services -n monitoring
 
 <img src="https://user-images.githubusercontent.com/6856382/222937285-5b8e0340-1993-4687-a1a5-de35325648c3.png">
 
+- b. click `Add Data Source`
+
+<img src="https://user-images.githubusercontent.com/6856382/222937670-dbe4d229-feb1-4d4a-81f8-8e7928794514.png">
+
+- c. Register information as follows:
+
+<img src="https://user-images.githubusercontent.com/6856382/222937703-efcef299-64f7-4967-8f3d-2351832cba20.png">
+
 ## Notes
 1. Debugging strategy
     - type `sudo journalctl -u kubelet -f`
