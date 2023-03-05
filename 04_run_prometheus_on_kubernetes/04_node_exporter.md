@@ -4,4 +4,3 @@
 
 1. `node exporter` is a way of exposing hardware and OS metrics to prometheus
 
-#
