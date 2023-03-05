@@ -30,6 +30,7 @@ git clone git@github.com:linuxacademy/content-kubernetes-prometheus-env.git
 **Kubernetes Control Plane**
 ```
 cd content-kubernetes-prometheus-env/
+cd prometheus
 ```
 
 4. Create the kubernetes namespace where prometheus will be living in
@@ -192,7 +193,7 @@ data:
 
 **Kubernetes Control Plane**
 ```
-kubectl get configmaps  -n monitoring
+kubectl get configmaps -n monitoring
 ```
 
 ```

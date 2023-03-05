@@ -14,6 +14,13 @@
 
 ## Instruction - Setting up Grafana Deployment
 
+1. Go to `grafana` directory from project root folder
+
+```
+cd ~/content-kubernetes-prometheus-env/
+cd grafana
+```
+
 1. Setup Grafana deployment
 
 ```
@@ -29,3 +36,20 @@ kubectl get pods -n monitoring
 <img src="https://user-images.githubusercontent.com/6856382/222930995-388a95c2-f359-4cc9-aea6-ba48694be106.png">
 
 
+## Instruction - Setting up Grafana Service
+
+1. Setup Grafana service
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f grafana-service.yml
+```
+
+2. Check Grafana service is created successfully
+
+**Kubernetes Control Plane**
+```
+kubectl get services -n monitoring
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/222934939-964d7963-c50f-493e-8a55-45f754f04945.png">
