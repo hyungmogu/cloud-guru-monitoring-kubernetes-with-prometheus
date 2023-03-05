@@ -30,7 +30,7 @@ prometheus-deployment-84697b66db-qgksz   1/1       Running   0          46s
 
 4. edit `prometheus-config-map.yml` to create two service discovery targets
     - `kubernetes-apiservers` gets all the metrics from the API servers
-    - `cadvisor` analyzes and exposes reousrce usage and performance data from running pod
+    - `cadvisor` is an open-source agent integrated into the kubelet binary that monitors resource usage and analyzes the performance of containers
     - more information can be found [here](https://devopscube.com/setup-prometheus-monitoring-on-kubernetes/)
 
 **~/prometheus/prometheus-config-map.yml (before)**
