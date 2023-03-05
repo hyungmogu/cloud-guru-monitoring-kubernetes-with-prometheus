@@ -15,8 +15,70 @@
 
 1. Add user `prometheus`
 
-**Kubernetes Control Plane**
+**All Nodes**
 ```
 adduser prometheus
 ```
+
+2. Download Node Exporter
+
+**All Nodes**
+```
+cd /home/prometheus
+curl -LO "https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz"
+tar -xvzf node_exporter-0.16.0.linux-amd64.tar.gz
+mv node_exporter-0.16.0.linux-amd64 node_exporter
+cd node_exporter
+chown prometheus:prometheus node_exporter
+```
+
+3. Create a file that allows node exporter to start as a daemon (background task)
+
+**All Nodes**
+```
+vim /etc/systemd/system/node_exporter.service
+```
+
+**/etc/systemd/system/node_exporter.service**
+```
+[Unit]
+Description=Node Exporter
+
+[Service]
+User=prometheus
+ExecStart=/home/prometheus/node_exporter/node_exporter
+
+[Install]
+WantedBy=default.target
+```
+
+4. Reload daemon
+
+**All Nodes**
+```
+systemctl daemon-reload
+```
+
+5. Enable node exporter service
+
+**All Nodes**
+```
+systemctl enable node_exporter.service
+```
+
+6. Start node exporter service
+
+**All Nodes**
+```
+systemctl start node_exporter.service
+```
+
+7. Check node_exporter.service is running properly
+
+**All Nodes**
+```
+systemctl status node_exporter.service
+```
+
+
 #
