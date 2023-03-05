@@ -21,4 +21,24 @@
 
 <img src="https://user-images.githubusercontent.com/6856382/222985921-63c6d668-bff6-499d-9e46-1dcf56a77dec.png">
 
-#
+## Installation Instruction - swagger
+
+### Source Repo
+
+1. follow instruction from swagger site [here](https://swaggerstats.io/)
+
+### Via Linuxacademy Repo
+
+1. Download from repo `linuxacademy/content-kubernetes-prometheus-app`
+
+```
+git clone git@github.com:linuxacademy/content-kubernetes-prometheus-app.git
+cd content-kubernetes-prometheus-app
+npm install
+```
+
+## Using Swagger Stats
+
+1. access `/swagger-stats/` to view swagger UI
+
+<img src="https://user-images.githubusercontent.com/6856382/222990455-9c294342-9dca-415d-9b4a-fcbb96146fc2.png">
