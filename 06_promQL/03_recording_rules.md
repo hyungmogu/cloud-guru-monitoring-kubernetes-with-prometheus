@@ -2,6 +2,8 @@
 
 - `recording rule` is a step before venturing into Prometheus's alerting manager
 - `recording rule` can be accessed in `rule` menu item under `status`
+- `recording rule` is a set of customized metrics stores in a file
+- `recording rule` relieves user from having to write customized metrics on every setup 
 
 <img src="https://user-images.githubusercontent.com/6856382/223038794-156806c5-f501-4558-8330-1e255861ff14.png">
 
@@ -11,7 +13,39 @@
 - `recording rules` has 
   1. `record` keyword 
     - `record` is the name of the time series to output to
+    - `record` has type string
+  2. `expr` keyword
+    - `expr` is the PromQL expression to evaluate. 
+    - `expr` evaluates expression at the current time
+    - `expr` has type string
+  
+  3. `labels` keyword
+    - `labels` add or overwrite before storing the default
+    - `labels` is an array whose element is in format `<label_name>:<label_value>`
 
+
+**Examples (~/content-kubernetes-prometheus-env/readrules/prometheus-read-rules.yml)**
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-read-rules-conf
+  labels:
+    name: prometheus-read-rules-conf
+  namespace: monitoring
+data:
+  node_rules.yml: |-
+    groups:
+    - name: node_rules
+      interval: 10s
+      rules:
+        - record: instance:node_cpu:avg_rate5m
+          expr: 100 - avg(irate(node_cpu_seconds_total{job="node-exporter", mode="idle"}[5m])) by (instance) * 100
+        - record: instance:node_memory_usage:percentage
+          expr: ((sum(node_memory_MemTotal_bytes) - sum(node_memory_MemFree_bytes) - sum(node_memory_Buffers_bytes) - sum(node_memory_Cached_bytes)) / sum(node_memory_MemTotal_bytes)) * 100
+        - record: instance:root:node_filesystem_usage:percentage
+          expr: (node_filesystem_size_bytes{mountpoint="/rootfs"} - node_filesystem_free_bytes{mountpoint="/rootfs"}) /node_filesystem_size_bytes{mountpoint="/rootfs"} * 100
+```
 
 ## Instruction - Adding Recording Rules
 
@@ -22,7 +56,7 @@
 git clone git@github.com:linuxacademy/content-kubernetes-prometheus-env.git
 ```
 
-2. Add rules files in `prometheus config map` file
+2. Add rules files in `prometheus config map` file, and replace `KUBERNETES_IP` with **private ip** of operating server instances
 
 ```
     ...
@@ -251,5 +285,35 @@ spec:
 cd content-kubernetes-prometheus-env
 cd readrules
 ```
+
+3. update prometheus config map
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f prometheus-config-map.yml
+```
+
+4. update prometheus read rules
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f prometheus-read-rules-map.yml
+```
+
+5. update prometheus deployment
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f prometheus-deployment.yml
+```
+
+6. Validate that changes are applied successfully
+
+**Kubernetes Control Plane**
+```
+kubectl get pods -n monitoring
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/223143305-7b0030a7-5e30-4c68-b944-1cb4702d6276.png">
 
 #
