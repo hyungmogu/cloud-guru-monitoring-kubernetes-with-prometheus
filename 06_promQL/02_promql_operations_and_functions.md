@@ -1,3 +1,2 @@
 # PromQL Operations and Functions
 
-#
