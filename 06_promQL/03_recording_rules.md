@@ -5,7 +5,15 @@
 
 <img src="https://user-images.githubusercontent.com/6856382/223038794-156806c5-f501-4558-8330-1e255861ff14.png">
 
-## Adding Recording Rules
+
+## Syntax - Recording Rules
+
+- `recording rules` has 
+  1. `record` keyword 
+    - `record` is the name of the time series to output to
+
+
+## Instruction - Adding Recording Rules
 
 1. Download files from github repo
 
