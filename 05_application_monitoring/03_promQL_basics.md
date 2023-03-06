@@ -17,3 +17,8 @@
 
 <img src="https://user-images.githubusercontent.com/6856382/223023113-763b1390-999d-48d7-a8e4-4a42f110050b.png">
 
+- `PromQL` result can be filtered by multiple conditions using comma
+
+<img src="">
+
+#
