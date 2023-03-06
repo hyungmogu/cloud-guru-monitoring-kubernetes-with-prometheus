@@ -21,4 +21,12 @@
 
 <img src="https://user-images.githubusercontent.com/6856382/223024125-8891ef1e-29ab-4064-8b66-027d483e3bc8.png">
 
-#
+- `PromQL` result can be filtered using regexes
+- `PromQL` result can be filtered using regexes by using =~ operator followed by regex expression
+
+**Example**
+```
+node_cpu_seconds_total[job=~".*-exporter"]
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/223025079-8577a966-9521-491d-ab02-62af0e61b25b.png">
