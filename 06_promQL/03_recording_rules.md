@@ -316,4 +316,3 @@ kubectl get pods -n monitoring
 
 <img src="https://user-images.githubusercontent.com/6856382/223143305-7b0030a7-5e30-4c68-b944-1cb4702d6276.png">
 
-#
