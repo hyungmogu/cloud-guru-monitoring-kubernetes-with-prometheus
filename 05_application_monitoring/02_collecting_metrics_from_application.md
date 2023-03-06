@@ -91,3 +91,75 @@ docker built -t rivethead42/comicbox .
 docker login
 ```
 
+5. Publish image to Docker hub
+
+**syntax**
+```
+docker push <docker_hub_username>/<app_name>
+```
+
+**Kubernetes Control Plane (or Local)**
+```
+docker push rivethead42/comicbox
+```
+
+6. In Kubernetes Control plane, apply kubernetes deployment sequence
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f deployment.yml
+```
+
+7. check to make sure pods are deployed 
+- in this case, it's deployed to default namespace
+
+**Kubernetes Control Plane**
+```
+kubectl get pods
+```
+
+```
+
+```
+
+8. check to make sure services are setup as intended
+
+**Kubernetes Control Plane**
+```
+kubectl get services
+```
+
+```
+
+```
+
+9. Access swagger UI 
+
+**Browser**
+```
+https://<PUBLIC_IP_ADDRESS>:8001/swagger-stats/ui
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/222994359-b2d9ce06-fce7-4a55-8da7-77d14095b7b3.png">
+
+## Importing Swagger-Stat data to Grafana
+
+1. Access Grafana UI dashboard
+
+**Browser**
+```
+https://<PUBLIC_IP_ADDRESS>:8000/dashboard
+```
+
+2. Import Swagger-Stat to Grafana Dashboard
+- ID for Swagger-stat dashboard is `3091`
+
+<img src="https://user-images.githubusercontent.com/6856382/222994510-0b09ebbb-1702-43a0-9bc7-1bd0f2de7b44.png">
+
+<img src="https://user-images.githubusercontent.com/6856382/222995083-707f807d-2012-4ed1-ae50-b6e85ab85732.png">
+
+3. Set name and `prometheus` as data source
+
+<img src="https://user-images.githubusercontent.com/6856382/222995177-d0c8b091-84fe-4573-9828-e091632e1db7.png">
+
+#
