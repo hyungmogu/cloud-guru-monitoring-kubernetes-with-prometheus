@@ -96,3 +96,48 @@ kubectl apply -f alertmanager-configmap.yml
 kubectl apply -f alertmanager-deployment.yml
 ```
 
+3. Check if deployment is applied successfully
+
+**Kubernetes Control Plane**
+```
+kubectl get pods -n monitoring
+```
+
+<img src="https://user-images.githubusercontent.com/6856382/223456199-4e79f75e-7bb1-4a6b-9d5a-40a3bfc7b37d.png">
+
+4. Setup alertmanager service
+- `prometheus.io/scrape: 'true'` must be set for alertmanager to work properly
+- `prometheus.io/scrape: '9093'` must be set for alertmanager to work properly
+
+<img src="https://user-images.githubusercontent.com/6856382/223457173-13314da4-7e18-4c14-8593-428425077d13.png">
+
+- `nodePort: 8081` is the port where users can access Alertmanager
+- `port: 9093` and `targetPort: 9093` are the port Alertmanager runs on, and communicating with other parts in kubernetes
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f alertmanager-service.yml
+```
+
+5. Apply prometheus config map
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f prometheus-config-map.yml
+```
+
+6. Apply prometheus rules in prometheus config map
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f prometheus-rules-config-map.yml
+```
+
+7. Apply changes to prometheus deployment
+
+**Kubernetes Control Plane**
+```
+kubectl apply -f prometheus-deployment.yml
+```
+
+#
