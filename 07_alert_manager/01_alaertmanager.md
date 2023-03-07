@@ -79,7 +79,7 @@ cd content-kubernetes-prometheus-env
 
 <img src="https://user-images.githubusercontent.com/6856382/223347117-43206aaa-6e84-4a2c-acf7-9c802b24f3fb.png">
 
-## Instruction - Applying configuration to Kubernetes
+## Instruction - Applying alertmanager configuration to Kubernetes
 
 1. apply file `alertmanager-configmap.yml` to kubernetes
 
