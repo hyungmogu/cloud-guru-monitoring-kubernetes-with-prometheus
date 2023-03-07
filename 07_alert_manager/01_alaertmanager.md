@@ -32,3 +32,22 @@ cd content-kubernetes-prometheus-env
 
 <img src="https://user-images.githubusercontent.com/6856382/223333439-af4480e7-179d-4b59-a684-e046b3eee80d.png">
 
+## Instruction - Setting up custom prometheus app
+
+1. Go to `https://api.slack.com/` and select `create an app`
+
+<img src="https://user-images.githubusercontent.com/6856382/223336003-27562070-4d25-4320-9235-4ee2c835b707.png">
+
+2. Select `Create From Scratch`
+
+<img src="https://user-images.githubusercontent.com/6856382/223336265-3b4aed56-60e7-45a7-a986-61f8cea61df5.png">
+
+3. Set
+    1. `App Name` as Prometheus
+    2. `Development Slack Workspace` as the workspace where the app should be placed
+
+<img src="https://user-images.githubusercontent.com/6856382/223336638-104e2fc2-0a85-481b-a817-0d8e06ac252d.png">
+
+4. Activate incoming webhooks
+
+<img src="https://user-images.githubusercontent.com/6856382/223336968-9b1b0d96-022a-431f-8b48-0543309892f5.png">
