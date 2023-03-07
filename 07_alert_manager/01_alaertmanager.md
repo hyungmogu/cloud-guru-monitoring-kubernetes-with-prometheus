@@ -31,3 +31,5 @@ cd content-kubernetes-prometheus-env
 3. Name the channel `alert` and select `create channel`
 
 <img src="https://user-images.githubusercontent.com/6856382/223333439-af4480e7-179d-4b59-a684-e046b3eee80d.png">
+
+#
