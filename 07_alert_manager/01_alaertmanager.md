@@ -96,3 +96,4 @@ kubectl apply -f alertmanager-configmap.yml
 kubectl apply -f alertmanager-deployment.yml
 ```
 
+ #
