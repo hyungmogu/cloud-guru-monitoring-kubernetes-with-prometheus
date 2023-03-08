@@ -24,3 +24,28 @@ groups:
 - `annotation` is like the summary of the alert
 
 
+## Instruction 
+
+1. download `linuxacademy/content-kubernetes-prometheus-env` from github
+
+**Kubernetes Control Plane**
+```
+git clone git@github.com:linuxacademy/content-kubernetes-prometheus-env.git
+```
+
+2. go to `alertmanager` folder from the project root folder
+
+**Kubernetes Control Plane**
+```
+cd content-kubernetes-prometheus-env
+cd alertmanager
+```
+
+3. Apply `prometheus-rules.yml` to kubernetes
+
+**kubernetes Control Plane**
+```
+kubectl apply -f prometheus-rules.yml
+```
+
+#
