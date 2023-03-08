@@ -19,3 +19,8 @@ groups:
       summary: High request latency
 ```
 
+- `for` is the amount of time the alert needs to be active before it fires
+- `severe` determines how severe the alert is going to be 
+- `annotation` is like the summary of the alert
+
+
