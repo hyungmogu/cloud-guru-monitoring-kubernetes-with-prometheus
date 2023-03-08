@@ -140,3 +140,4 @@ kubectl apply -f prometheus-rules-config-map.yml
 kubectl apply -f prometheus-deployment.yml
 ```
 
+#
