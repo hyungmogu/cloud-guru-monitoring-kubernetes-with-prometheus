@@ -19,4 +19,3 @@ groups:
       summary: High request latency
 ```
 
-#
