@@ -24,4 +24,3 @@ groups:
 - `annotation` is like the summary of the alert
 
 
-#
