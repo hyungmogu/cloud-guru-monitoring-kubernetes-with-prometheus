@@ -31,4 +31,3 @@ sh bootstrap.sh
     2. command-line arguements
     3. configuration files in a volume
 
-#
