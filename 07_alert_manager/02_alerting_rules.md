@@ -263,3 +263,5 @@ data:
         expr: rate(redis_commands_processed_total[2m])
 
 ```
+
+#
