@@ -107,4 +107,3 @@ prometheus-deployment-8d4db8f98-p2dr5   1/1       Running   0          18s
     2. command-line arguements
     3. configuration files in a volume
 
-#
