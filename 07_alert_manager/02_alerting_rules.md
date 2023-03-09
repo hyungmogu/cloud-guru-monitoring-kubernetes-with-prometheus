@@ -48,3 +48,4 @@ cd alertmanager
 kubectl apply -f prometheus-rules.yml
 ```
 
+#
