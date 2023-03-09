@@ -18,10 +18,16 @@ data:
     - name: redis_alerts
       rules:
       - alert: RedisServerGone
+        expr: absent(redis_up{app="media-redis"})
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: No Redis servers are reporting!
       - alert: RedisServerDown
         expr: redis_up{app="media-redis"} == 0
         for: 10m
         labels:
           severity: critical
         annotations:
-          summary: Redis Server {{ $labels.instance }} is down
+          summary: Redis Server {{ $labels.instance }} is down!
