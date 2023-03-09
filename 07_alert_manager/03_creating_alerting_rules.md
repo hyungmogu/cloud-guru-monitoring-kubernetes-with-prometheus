@@ -1,3 +1,2 @@
 # Creating Alerting Rules
 
-#
