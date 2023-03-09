@@ -264,3 +264,9 @@ data:
 
 ```
 
+- all the information about alert written in config-map.yml file is include in UI
+
+<img src="https://user-images.githubusercontent.com/6856382/223890380-79ba51f1-abd7-48b3-b42c-1f57db01c44a.png"/>
+
+
+#
